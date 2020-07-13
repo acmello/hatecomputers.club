@@ -1,0 +1,206 @@
+:root {
+    --white: rgb(255, 255, 255);
+    --pink: rgb(232,56,144);
+    --black: rgb(43,45,65);
+    --green: rgb(144, 238, 144);
+    --gray: rgb(225, 230, 235);
+}
+
+.title-1 {
+  font-size: 70px;
+  color: var(--black);
+}
+
+.title-2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+    color: var(--white);
+    position: relative;
+    font-weight: 900;
+}
+
+.title-3 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: var(--white);
+    position: relative;
+}
+
+.paragraph {
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: 15px;
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  text-shadow: -1px 0 var(--green);
+  left: 2px;
+  background: var(--white);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 var(--pink);
+  background: var(--white);
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.introduction,
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.about {
+  height: 70vh;
+  position: relative;
+  padding: 20px 0 20px 0;
+  background-color: var(--black);
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    margin-right: 15%;
+    justify-content: center;
+    height: 100%;
+}
+
+.contact {
+    padding: 5%;
+    height: 100vh;
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.5;
+    color: var(--black);
+}
+
+.link {
+  color: var(--black);
+  text-decoration: none;
+  animation: fadeInOut 1.5s infinite linear alternate-reverse;
+}
+
+.link:hover,
+.link:active{
+  color: var(--black);
+  text-decoration: none;
+}
+
+.introduction > .call-to-action {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gray {
+    text-decoration: none;
+    color: var(--pink);
+    position: relative;
+}
+
+/* .gray:before {
+    content: attr(data-text);
+    color: var(--pink);
+    width: 100%;
+    height: 100%;
+    left: -3px;
+    position: absolute;
+    z-index: -2;
+    background-color: var(--white);
+} */
+
+.icon {
+    display: block;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+    transition: transform .6s;
+}
+
+.icon:hover {
+    transform: scale(1.5);
+}
+
+.icon-linkedin {
+    background: url(../assets/linkedin.svg) no-repeat top left;
+}
+
+.icon-github {
+    background: url(../assets/github.svg) no-repeat top left;
+}
+
+.icon-medium {
+    background: url(../assets/medium.svg) no-repeat top left;
+}
+
+.icon-soundcloud {
+    background: url(../assets/soundcloud.svg) no-repeat top left;
+}
+
+.icon-protonmail {
+    background: url(../assets/protonmail.svg) no-repeat top left;
+    fill: blue;
+}
+
+.icons {
+    display: block;
+    list-style: none;
+    width: 100%;
+    text-align: right;
+}
+
+.contact {
+    flex-direction: column;
+}
+
+.contact .paragraph {
+    color: var(--black);
+    margin-bottom: 35px;
+}
+
+.icon-item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.footer-message {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gray);
+    font-size: 18px;
+    padding: 0 5px 0 5px;
+}
+
+.footer-message::selection {
+    background-color: var(--pink);
+    color: var(--black);
+}
