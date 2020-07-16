@@ -1,7 +1,3 @@
-let state = {
-    sections: [],
-}
-
 const setState = updateObject => {
     Object.keys(updateObject).map(key => {
         if (! state[key].hasOwnProperty) {
@@ -18,25 +14,26 @@ const scrollTo = element => {
     window.scrollTo({ 
         top: offsetTop, 
         left: offsetLeft, 
-        behavior: 'smooth'
+        behavior: 'smooth',
     })
 }
 
 const onCallToAction = aboutSection => {
     return event => {
-        scrollTo(aboutSection);
-        event.preventDefault();
+        event.preventDefault()
+        scrollTo(aboutSection)
     }
 }
 
 function App () {
     const sections = [...document.querySelectorAll('section')]
     const aboutSection = sections[1];
-    const callToActionButton = document.querySelectorAll('.call-to-action')
+    const contactSection = sections[2];
+    const scrollIntroductionClickButton = document.querySelector('.scroll-introduction-btn')
+    const scrollAboutClickButton = document.querySelector('.scroll-about-btn')
 
-    setState({ sections });
-    callToActionButton.addEventListener('click', onCallToAction(aboutSection));
-   
+    scrollIntroductionClickButton.addEventListener('click', onCallToAction(aboutSection));
+    scrollAboutClickButton.addEventListener('click', onCallToAction(contactSection));
 }
 
 document.addEventListener('DOMContentLoaded', App);

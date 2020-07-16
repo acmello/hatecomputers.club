@@ -1,9 +1,9 @@
 :root {
-    --white: rgb(255, 255, 255);
-    --pink: rgb(232,56,144);
-    --black: rgb(43,45,65);
-    --green: rgb(144, 238, 144);
-    --gray: rgb(225, 230, 235);
+  --white: rgb(255, 255, 255);
+  --pink: rgb(232, 56, 144);
+  --black: rgb(43, 45, 65);
+  --green: #38e890;
+  --gray: rgb(225, 230, 235);
 }
 
 .title-1 {
@@ -12,24 +12,24 @@
 }
 
 .title-2 {
-    font-size: 34px;
-    margin-bottom: 20px;
-    color: var(--white);
-    position: relative;
-    font-weight: 900;
+  font-size: 34px;
+  margin-bottom: 20px;
+  color: var(--white);
+  position: relative;
+  font-weight: 900;
 }
 
 .title-3 {
-    font-size: 26px;
-    margin-bottom: 20px;
-    color: var(--white);
-    position: relative;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--white);
+  position: relative;
 }
 
 .paragraph {
-    line-height: 1.5;
-    color: var(--white);
-    margin-bottom: 15px;
+  line-height: 1.5;
+  color: var(--white);
+  margin-bottom: 15px;
 }
 
 .glitch {
@@ -83,124 +83,248 @@
 }
 
 .about-container {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15%;
-    margin-right: 15%;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15%;
+  margin-right: 15%;
+  justify-content: center;
+  height: 100%;
 }
 
 .contact {
-    padding: 5%;
-    height: 100vh;
-    font-size: 38px;
-    font-weight: 900;
-    line-height: 1.5;
-    color: var(--black);
+  padding: 5%;
+  height: 100vh;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.5;
+  color: var(--black);
 }
 
 .link {
-  color: var(--black);
   text-decoration: none;
   animation: fadeInOut 1.5s infinite linear alternate-reverse;
 }
 
 .link:hover,
-.link:active{
-  color: var(--black);
+.link:active {
   text-decoration: none;
 }
 
-.introduction > .call-to-action {
+.scroll-introduction-btn {
+  color: var(--black);
+}
+
+.scroll-introduction-btn:hover,
+.scroll-introduction-btn:active {
+  color: var(--black);
+}
+
+.scroll-about-btn {
+  color: var(--white);
+}
+
+.scroll-about-btn:hover,
+.scroll-about-btn:active {
+  color: var(--white);
+}
+.introduction .call-to-action,
+.about .call-to-action {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.gray {
-    text-decoration: none;
-    color: var(--pink);
-    position: relative;
+.about > .call-to-action {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-/* .gray:before {
-    content: attr(data-text);
-    color: var(--pink);
-    width: 100%;
-    height: 100%;
-    left: -3px;
-    position: absolute;
-    z-index: -2;
-    background-color: var(--white);
-} */
+.pink {
+  text-decoration: none;
+  color: var(--pink);
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
+  width: 0;
+}
+
+.pink:after {
+  content: "";
+  position: absolute;
+  background-color: var(--gray);
+  width: 0;
+  height: 10px;
+  left: 0;
+  bottom: 5px;
+  z-index: -1;
+  transition: width 0.6s ease-in;
+}
+
+.pink:hover:after {
+  width: 100%;
+}
+
+.pink::before:hover {
+  opacity: 0;
+}
 
 .icon {
-    display: block;
-    text-indent: -9999px;
-    width: 32px;
-    height: 32px;
-    transition: transform .6s;
+  display: block;
+  text-indent: -9999px;
+  width: 32px;
+  height: 32px;
+  transition: transform 0.4s;
 }
 
 .icon:hover {
-    transform: scale(1.5);
+  transform: scale(1.4);
 }
 
 .icon-linkedin {
-    background: url(../assets/linkedin.svg) no-repeat top left;
+  background: url(../assets/linkedin.svg) no-repeat top left;
 }
 
 .icon-github {
-    background: url(../assets/github.svg) no-repeat top left;
+  background: url(../assets/github.svg) no-repeat top left;
 }
 
 .icon-medium {
-    background: url(../assets/medium.svg) no-repeat top left;
+  background: url(../assets/medium.svg) no-repeat top left;
 }
 
 .icon-soundcloud {
-    background: url(../assets/soundcloud.svg) no-repeat top left;
+  background: url(../assets/soundcloud.svg) no-repeat top left;
 }
 
 .icon-protonmail {
-    background: url(../assets/protonmail.svg) no-repeat top left;
-    fill: blue;
+  background: url(../assets/protonmail.svg) no-repeat top left;
+  fill: blue;
 }
 
 .icons {
-    display: block;
-    list-style: none;
-    width: 100%;
-    text-align: right;
+  display: block;
+  list-style: none;
+  width: 100%;
+  text-align: right;
 }
 
 .contact {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .contact .paragraph {
-    color: var(--black);
-    margin-bottom: 35px;
+  color: var(--black);
+  margin-bottom: 35px;
 }
 
 .icon-item {
-    display: inline-block;
-    margin-right: 20px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.icon-item:last-of-type {
+  margin-right: 0;
 }
 
 .footer-message {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--gray);
-    font-size: 18px;
-    padding: 0 5px 0 5px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gray);
+  font-size: 16px;
+  padding: 0 5px 0 5px;
+  font-weight: 500;
 }
 
-.footer-message::selection {
-    background-color: var(--pink);
-    color: var(--black);
+.footer-message span {
+  font-weight: 600;
+}
+
+.image-container {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.avatar {
+  width: 100%;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.image-container::after {
+  left: 1px;
+  top: 0;
+  width: 150px;
+  height: 150px;
+  display: block;
+  border-radius: 50%;
+  content: "";
+  z-index: -10;
+  background-color: var(--pink);
+  position: absolute;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    .container {
+      width: 100%;
+    }
+
+    .title-1 {
+      font-size: 50px;
+    }
+
+    .title-2 {
+      text-align: center;
+    }
+
+    .about {
+      height: auto;
+    }
+
+    .about .paragraph {
+      text-align: center;
+    }
+
+    .scroll-about-btn {
+      display: none;
+    }
+
+    .contact .paragraph {
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .contact .icons {
+      text-align: center;
+    }
+
+    .footer-message {
+      width: 100%;
+      text-align: center;
+    }
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .container {
+      width: 100%;
+    }
 }
