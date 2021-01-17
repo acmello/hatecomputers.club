@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[hatecomputers.club]]></title><description><![CDATA[Blog primarily about infosec and some random thoughts.]]></description><link>https://gatsby-starter-blog-demo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 17 Jan 2021 14:30:39 GMT</lastBuildDate><item><title><![CDATA[Pico CTF - Irish-Name Repo]]></title><description><![CDATA[Pico CTF has been around for awhile and it seems to be more approachable one amongst other platforms alike. Different from Hackthebox or…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/picoctf-irish-name-repo/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/picoctf-irish-name-repo/</guid><pubDate>Mon, 04 Jan 2021 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://play.picoctf.org/&quot;&gt;Pico CTF&lt;/a&gt; has been around for awhile and it seems to be more approachable one amongst other platforms alike. Different from Hackthebox or Tryhackme (where “pwn a box” usually means chaining security vulnerabilities altogether towards finding the flags), on every picoCTF challenge, you just get an URL where there’s a small puzzle to be solved. Most of the time it involves one specific type/class of security flaw - like XSS or SQLi for instance - and that’s about it. Also, you don’t really need VPN’s or any additional setup other than creating an account. Simple and easy.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[hatecomputers.club]]></title><description><![CDATA[Blog primarily about infosec and some random thoughts.]]></description><link>https://gatsby-starter-blog-demo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 17 Jan 2021 14:56:16 GMT</lastBuildDate><item><title><![CDATA[Pico CTF - Irish-Name Repo]]></title><description><![CDATA[Pico CTF has been around for awhile and it seems to be more approachable one amongst other platforms alike. Different from Hackthebox or…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/picoctf-irish-name-repo/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/picoctf-irish-name-repo/</guid><pubDate>Mon, 04 Jan 2021 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://play.picoctf.org/&quot;&gt;Pico CTF&lt;/a&gt; has been around for awhile and it seems to be more approachable one amongst other platforms alike. Different from Hackthebox or Tryhackme (where “pwn a box” usually means chaining security vulnerabilities altogether towards finding the flags), on every picoCTF challenge, you just get an URL where there’s a small puzzle to be solved. Most of the time it involves one specific type/class of security flaw - like &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-site_scripting&quot;&gt;XSS&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/SQL_injection&quot;&gt;SQLi&lt;/a&gt; for instance - and that’s about it. Also, you don’t really need VPN’s or any additional setup other than creating an account. Simple and easy.&lt;/p&gt;
 &lt;h2&gt;Irish-Name Repo challenges&lt;/h2&gt;
-&lt;p&gt;I was basically skimming through the &lt;strong&gt;Web Exploitation&lt;/strong&gt; category when I came across Irish-Name Repo. The nice thing about this pick is that it is a composed challenge, each one slightly more difficult than the previous. It was apparently part of the picoCTF 2019, so not that old either. Lets get to it.&lt;/p&gt;
+&lt;p&gt;I was basically skimming through the &lt;a href=&quot;https://play.picoctf.org/practice?category=1&amp;#x26;page=1&quot;&gt;Web Exploitation&lt;/a&gt; category when I came across &lt;strong&gt;Irish-Name Repo&lt;/strong&gt;. The nice thing about this pick is that it is a composed challenge, each one slightly more difficult than the previous. It was apparently part of the picoCTF 2019, so not that old either. Lets get to it.&lt;/p&gt;
 &lt;h3&gt;Irish-Name Repo 1&lt;/h3&gt;
 &lt;p&gt;So right after selecting the first challenge, it displayed a modal with the URL and a small description of what needed to be achieved:&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -9,7 +9,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png&quot;
+    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name-1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -20,15 +20,15 @@
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;irish name&quot;
-        title=&quot;irish name&quot;
-        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png&quot;
-        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name.png 158w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name.png 315w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png 630w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name.png 945w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name.png 1260w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png 1450w&quot;
+        alt=&quot;First challenge&quot;
+        title=&quot;First challenge&quot;
+        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name-1.png&quot;
+        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name-1.png 158w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name-1.png 315w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name-1.png 630w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name-1.png 945w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name-1.png 1260w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name-1.png 1450w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -71,7 +71,7 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt; The first link on the menu did exactly what it said it would: It closed the menu. The second item got me to a forum sort of page where there was a discussion about irish people. First comment was a giveaway:&lt;/p&gt;
+&lt;p&gt; The &lt;a href=&quot;https://play.picoctf.org/practice/challenge/80?category=1&amp;#x26;page=1&quot;&gt;first link&lt;/a&gt; on the menu did exactly what it said it would: It closed the menu. The second item got me to a forum sort of page where there was a discussion about irish people. First comment was a giveaway:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;“Hi. I tried adding my favorite Irish person, Conan O’Brien. But I keep getting something called a &lt;strong&gt;SQL Error&lt;/strong&gt;.”&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -81,7 +81,7 @@
 &lt;p&gt;This might be the most basic &lt;em&gt;SQL injection&lt;/em&gt; technique - and most well known - to bypass login pages. It has been around for quite some time and consists in two things: &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The fact that the input &lt;strong&gt;isn’t sanitized&lt;/strong&gt; and injects whatever you passed in directly into the query;&lt;/li&gt;
-&lt;li&gt;The fact that by manipulating the query, it allows you to disregard the first piece of the condition by creating a second one that &lt;strong&gt;always evaluate to true&lt;/strong&gt;;&lt;/li&gt;
+&lt;li&gt;The fact that by manipulating the query, it allows you to disregard the first piece of the condition by creating a second onee that &lt;strong&gt;always evaluate to true&lt;/strong&gt;;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The standard query to retrieve and validate wether an user actually exists could be something like this:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;SELECT FROM users WHERE username=&amp;#39;bob&amp;#39; AND password=&amp;#39;p4ssw0rd&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -98,33 +98,33 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Irish-Name Repo 2&lt;/h3&gt;
-&lt;p&gt;The second challenge landed me back to the same page. This time however, the description hinted the SQL had been improved or in other words, my first bypass was now discarded. Lets have a look.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://play.picoctf.org/practice/challenge/59?category=1&amp;#x26;page=1&quot;&gt;The second challenge&lt;/a&gt; landed me back to the same page. This time however, the description hinted the SQL had been improved or in other words, my first bypass was now discarded. Lets have a look.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png&quot;
+    href=&quot;/static/24838cb23e07f8e564ed8d158bf4d893/e515d/irish-name-2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 74.0506329113924%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYUlEQVQ4y41TW27UQBD0/ZDCCZDgiwsgfpH45hIghJKABBI/PE7AK4D4iNhsnJDEzq7HnvHb42dRPbtBCSSApVL3PLrdVd3jWduiqmqUTYOqbVHUDUpr0Y0DsrJEnpcYhhHjOP6yl0LOhgFeyaAgWOB0/wdOZz6C2QGOv/uwKsXyKISKNaZpwn994wQvzWpkqUb/+i3GJ88wbr/E9PwN+s1XwKddd29iBZL0PFw8E4y/7XsmtWhJtSHVuqrQ0R/6juhJUTD8QU/2W1sxZc8kXJ8784qiRBguEYQLRCr5K6Ozymw7YHeWIFzyx+PFO540xKQZsrxw1jWorFCxYgk/j3EtZRSPuPfA4s79Bifh6E6lYY6ybSwaVtlKIpPTZ7I0R50V4C2yIrp+hbZztqcci0WMxdIgTgwSbZAypuW513FEmqpnYyoYOYx5aDKoKEG0jKHdnkasZK2oc71KSD9SsbOnC4WYd1zCmtTStIBmEqGsdUqbU4LSrcV3+/ITBklXRXzRuyCbab3u+1XzvFT0y9bIc2dlL6cv1pgUMqtnqDgJAiuTwcdg7WpKuq5zvncShJjvHxA+/IND+P4hZnv72Jv7tHPMZnNEkUKSJKQVE4osjKMrbALGy5dRc601vDhO1lWlV8IYcwF5nrGxDWe1pKbazaOsyyJfaSgQCvKuz8q/DCJ6z6Ev2cSPXzu8/9xh51uPdzstPnzpUDd8y3JJEoqoXd87+6/vKJiwccti42aD23dbXKd/7UYDNhueYrdEE2l7kmhnr4J02RiNo2ODx08VHm4qbL1QeLRFbCucBAY/AftIeJ87l6OEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 77.84810126582278%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYElEQVQ4y41TPY/TQBD1X6Okp0BCor+Klj+B6BBQQIM4CihOSIiCjpKOj1ySI3cc4fLh2Guv7fXG3nUebzaXu5CDEys9zex4/Xbe7EzknIMxNcyygaVfWkt/icZ76KpCUVZYrVaQJfZadB2ikj+NxxPMRqeY9Ec4GxxjfDiCmaeIx1MsEnVBuL12Y7L3jUPUtC2yRYzu4C26l6/RvTrA6s17+P13wKfe+jBv3s1mm2iDTjL0lLakRIGlXMcLPKV7L/ABcnAbErPWoGmbK98iqdFkOsdPylaZxrXrPDH58eRUsb72PMvLI1FdW2S5RkayXJewfByJWWa84diGrLZd4cFjhx/j1fkFl7KjlgSVLlBXBnmaoaRfKI0qLwDfAc7T+rVtXbDyo8q7QLz7QBFYr2XFdtEVtMppy2CFXPGFVUK7UMgZk7jEpIabGuy2VGTtEpNZgtk8wXQW048RL1LM4zTYmASCWZyw1nEoy3U9GdUkTFKFhJlIHYUkYXYps5HaznlRWZor0v7Wh0FyxdoVZYmKDR78oiBByekxISZ78XfRNE2AtNvGb9ly0XQ6Q39whMHwO0bHJxiNToJ/2B+GeL9/hDiOkabMPEkC0qAohab88a8zvjJCd0gsyrIMeU55WYa1n134f+5VsEqpEPOOM97V0PmcQhtiSUUF24avvEn333BbWO+Hxw5f+y16Q4dvgwZfDjnC2pOQBxQfQF7bGBvsZuR24XwXRrKsOty9Z3HzjsHefYvbezVu3DL48NFL29gww3Vd/xespcyixrP9Ag+faDx9UeDRc83J0fjcM/gNfp3K+175kpgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;irish name&quot;
-        title=&quot;irish name&quot;
-        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png&quot;
-        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name.png 158w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name.png 315w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png 630w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name.png 945w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name.png 1260w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png 1450w&quot;
+        alt=&quot;irish name 2&quot;
+        title=&quot;irish name 2&quot;
+        src=&quot;/static/24838cb23e07f8e564ed8d158bf4d893/f058b/irish-name-2.png&quot;
+        srcset=&quot;/static/24838cb23e07f8e564ed8d158bf4d893/c26ae/irish-name-2.png 158w,
+/static/24838cb23e07f8e564ed8d158bf4d893/6bdcf/irish-name-2.png 315w,
+/static/24838cb23e07f8e564ed8d158bf4d893/f058b/irish-name-2.png 630w,
+/static/24838cb23e07f8e564ed8d158bf4d893/40601/irish-name-2.png 945w,
+/static/24838cb23e07f8e564ed8d158bf4d893/78612/irish-name-2.png 1260w,
+/static/24838cb23e07f8e564ed8d158bf4d893/e515d/irish-name-2.png 1430w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -168,8 +168,7 @@ right away as shown down below:&lt;/p&gt;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;After playing with the input for a second, I noticed what was giving away our SQLi was in fact the &lt;code class=&quot;language-text&quot;&gt;or&lt;/code&gt; piece as part the username. So everything with
-&lt;strong&gt;or&lt;/strong&gt; in the condition would trigger the &lt;em&gt;WAF&lt;/em&gt;. I then, removed the &lt;code class=&quot;language-text&quot;&gt;or 1=1--&lt;/code&gt; altogether and replaced it with just &lt;code class=&quot;language-text&quot;&gt;admin&amp;#39;--&lt;/code&gt;. Boom, got the second flag.&lt;/p&gt;
+&lt;p&gt;After playing with the input for a second, I noticed what was giving away our SQLi attempt was in fact the &lt;code class=&quot;language-text&quot;&gt;or&lt;/code&gt; piece. So everything with &lt;strong&gt;or&lt;/strong&gt; in the condition would trigger the validation. I then, removed the &lt;code class=&quot;language-text&quot;&gt;or 1=1--&lt;/code&gt; altogether and replaced it with just &lt;code class=&quot;language-text&quot;&gt;admin&amp;#39;--&lt;/code&gt;. Boom, got the second flag.&lt;/p&gt;
 &lt;h4&gt;Explanation&lt;/h4&gt;
 &lt;p&gt;So in this case the validator was only looking for &lt;code class=&quot;language-text&quot;&gt;or&lt;/code&gt; as part of the query, and I needed to find away to accomplish the same result without it. What I did then was take into account the fact that I knew beforehand the &lt;code class=&quot;language-text&quot;&gt;admin&lt;/code&gt; was a valid user - he was posting in the forum page - and that’s all. This is how the query looks like:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;SELECT FROM users WHERE username=&amp;#39;admin&amp;#39;-- AND password=&amp;#39;p4ssw0rd&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -182,26 +181,26 @@ right away as shown down below:&lt;/p&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png&quot;
+    href=&quot;/static/b08164cd67142f3dfd2b81c8f24d76c8/c65fa/irish-name-3.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 74.0506329113924%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYUlEQVQ4y41TW27UQBD0/ZDCCZDgiwsgfpH45hIghJKABBI/PE7AK4D4iNhsnJDEzq7HnvHb42dRPbtBCSSApVL3PLrdVd3jWduiqmqUTYOqbVHUDUpr0Y0DsrJEnpcYhhHjOP6yl0LOhgFeyaAgWOB0/wdOZz6C2QGOv/uwKsXyKISKNaZpwn994wQvzWpkqUb/+i3GJ88wbr/E9PwN+s1XwKddd29iBZL0PFw8E4y/7XsmtWhJtSHVuqrQ0R/6juhJUTD8QU/2W1sxZc8kXJ8784qiRBguEYQLRCr5K6Ozymw7YHeWIFzyx+PFO540xKQZsrxw1jWorFCxYgk/j3EtZRSPuPfA4s79Bifh6E6lYY6ybSwaVtlKIpPTZ7I0R50V4C2yIrp+hbZztqcci0WMxdIgTgwSbZAypuW513FEmqpnYyoYOYx5aDKoKEG0jKHdnkasZK2oc71KSD9SsbOnC4WYd1zCmtTStIBmEqGsdUqbU4LSrcV3+/ITBklXRXzRuyCbab3u+1XzvFT0y9bIc2dlL6cv1pgUMqtnqDgJAiuTwcdg7WpKuq5zvncShJjvHxA+/IND+P4hZnv72Jv7tHPMZnNEkUKSJKQVE4osjKMrbALGy5dRc601vDhO1lWlV8IYcwF5nrGxDWe1pKbazaOsyyJfaSgQCvKuz8q/DCJ6z6Ev2cSPXzu8/9xh51uPdzstPnzpUDd8y3JJEoqoXd87+6/vKJiwccti42aD23dbXKd/7UYDNhueYrdEE2l7kmhnr4J02RiNo2ODx08VHm4qbL1QeLRFbCucBAY/AftIeJ87l6OEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 73.41772151898735%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACU0lEQVQ4y31Uy44TMRCcj+PGBywXzsAP8BWcgQsSywEtIDggBOIHuCwHWO0jL6IgtLuZzMvjGc94/Cq6vWQJJGCpZE/HblV1VycxxqCuG8iuh9QaNe1CKejgIZoWVVUjhABevP8XPiBRXYfLyyWy8Qzp8QjpyQQXRyOoxQXyxTmKSlwn3Fy7YhREoocBRZbBvnsPd/Aa7sVb+DcfYQ8+IHw+i/e8c/De/wHOx0n/jifWOvR6gDIWLSV3nGAT8fG2PK0VjBm2SpEoRZKXK5yfX0JQvXatcEXnWqajWp1NKtRSb8lPOmpCXlQoygolJRS1jLvkhgiJgZoWH/0Cr14HPHhs8OPiKuL9BkNPUi0ldSTbqh6m0xgaFWND28FTHFQWyoxA58A7PTQmxERbkr21kEKjKiWKvES2KlAS43SZxXNViohslce9Jea/JW7XNjHEsBJNlMdSM0paiRqrrIAilnzJOR8RNuq40zZcw7ZtIaUkc0s0DRlcNvHMMf7msyKjd+TXNfjbkjJNg9D3VBpyBw8II1kuU8xmc0ymMywW3zGfLzCezDAeTyn2DaPRBGmaIs/ziIw8WxQFVqsMglQtySHkLLTkFv4tqSpqf03dFWInagLfWaMkNwhRwVkVUZZLEspO0MS8oRoSdbYO09bUxU36u2CtoTsWpxOLrycGZ1OPo1ODL8f0nyD9uimSvKVjYp4aR6O2CzxVITjyqMOtex1u3la4c7/D3t0ON/YUPh06JGtGvK/Bxf4XeNzadsD+yxaP9hs8e9XiyfMWD582mM57/ARglH8g0+PZ8QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        alt=&quot;irish name&quot;
-        title=&quot;irish name&quot;
-        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png&quot;
-        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name.png 158w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name.png 315w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png 630w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name.png 945w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name.png 1260w,
-/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png 1450w&quot;
+        alt=&quot;irish name 3&quot;
+        title=&quot;irish name 3&quot;
+        src=&quot;/static/b08164cd67142f3dfd2b81c8f24d76c8/f058b/irish-name-3.png&quot;
+        srcset=&quot;/static/b08164cd67142f3dfd2b81c8f24d76c8/c26ae/irish-name-3.png 158w,
+/static/b08164cd67142f3dfd2b81c8f24d76c8/6bdcf/irish-name-3.png 315w,
+/static/b08164cd67142f3dfd2b81c8f24d76c8/f058b/irish-name-3.png 630w,
+/static/b08164cd67142f3dfd2b81c8f24d76c8/40601/irish-name-3.png 945w,
+/static/b08164cd67142f3dfd2b81c8f24d76c8/78612/irish-name-3.png 1260w,
+/static/b08164cd67142f3dfd2b81c8f24d76c8/c65fa/irish-name-3.png 1434w&quot;
         sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -319,7 +318,8 @@ right away as shown down below:&lt;/p&gt;
 &lt;li&gt;Last letter is &lt;strong&gt;r&lt;/strong&gt;: shift 12 positions away and you’ll get the letter &lt;strong&gt;f&lt;/strong&gt; (its circular, so once it reaches the letter &lt;strong&gt;z&lt;/strong&gt; it starts over)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Dope, but again.. what do we do with that information now? Well, how about crafting a payload that after converted, translates its final result into  &lt;code class=&quot;language-text&quot;&gt;or 1=1--&lt;/code&gt;? That could work. So applying the same idea to the new password, that would be &lt;code class=&quot;language-text&quot;&gt;be 1=1&lt;/code&gt;. This is how we get the last flag.&lt;/p&gt;
-&lt;h3&gt;Wrapping up&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[TryHackMe - Tartarus CTF Writeup]]></title><description><![CDATA[This is my first TryHackMe writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</guid><pubDate>Sun, 01 Nov 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first &lt;a href=&quot;https://tryhackme.com/&quot;&gt;TryHackMe&lt;/a&gt; writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado, lets get to it.   &lt;/p&gt;
+&lt;h3&gt;Wrapping up&lt;/h3&gt;
+&lt;p&gt;Even by being a pretty basic SQLi CTF I yet found this really entertaining. Hope you’ve learnt something from this. I’ll see you all next time.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[TryHackMe - Tartarus CTF Writeup]]></title><description><![CDATA[This is my first TryHackMe writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</guid><pubDate>Sun, 01 Nov 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first &lt;a href=&quot;https://tryhackme.com/&quot;&gt;TryHackMe&lt;/a&gt; writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado, lets get to it.   &lt;/p&gt;
 &lt;h2&gt;Enumeration&lt;/h2&gt;
 &lt;p&gt;I like to start it off by quickly checking whats in front of me. &lt;a href=&quot;https://nmap.org/&quot;&gt;Nmap&lt;/a&gt; can help with that. My &lt;em&gt;go-to&lt;/em&gt; approach is usually:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;P.S: Quick heads up: There will be command breakdown in the end of every article so you can use for future reference. For now, just bear with me.&lt;/em&gt;  &lt;/p&gt;
