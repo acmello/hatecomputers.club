@@ -1,4 +1,325 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[hatecomputers.club]]></title><description><![CDATA[Blog primarily about infosec and some random thoughts.]]></description><link>https://gatsby-starter-blog-demo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 04 Jan 2021 09:33:10 GMT</lastBuildDate><item><title><![CDATA[TryHackMe - Tartarus CTF Writeup]]></title><description><![CDATA[This is my first TryHackMe writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</guid><pubDate>Sun, 01 Nov 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first &lt;a href=&quot;https://tryhackme.com/&quot;&gt;TryHackMe&lt;/a&gt; writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado, lets get to it.   &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[hatecomputers.club]]></title><description><![CDATA[Blog primarily about infosec and some random thoughts.]]></description><link>https://gatsby-starter-blog-demo.netlify.app</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 17 Jan 2021 14:30:39 GMT</lastBuildDate><item><title><![CDATA[Pico CTF - Irish-Name Repo]]></title><description><![CDATA[Pico CTF has been around for awhile and it seems to be more approachable one amongst other platforms alike. Different from Hackthebox or…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/picoctf-irish-name-repo/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/picoctf-irish-name-repo/</guid><pubDate>Mon, 04 Jan 2021 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;a href=&quot;https://play.picoctf.org/&quot;&gt;Pico CTF&lt;/a&gt; has been around for awhile and it seems to be more approachable one amongst other platforms alike. Different from Hackthebox or Tryhackme (where “pwn a box” usually means chaining security vulnerabilities altogether towards finding the flags), on every picoCTF challenge, you just get an URL where there’s a small puzzle to be solved. Most of the time it involves one specific type/class of security flaw - like XSS or SQLi for instance - and that’s about it. Also, you don’t really need VPN’s or any additional setup other than creating an account. Simple and easy.&lt;/p&gt;
+&lt;h2&gt;Irish-Name Repo challenges&lt;/h2&gt;
+&lt;p&gt;I was basically skimming through the &lt;strong&gt;Web Exploitation&lt;/strong&gt; category when I came across Irish-Name Repo. The nice thing about this pick is that it is a composed challenge, each one slightly more difficult than the previous. It was apparently part of the picoCTF 2019, so not that old either. Lets get to it.&lt;/p&gt;
+&lt;h3&gt;Irish-Name Repo 1&lt;/h3&gt;
+&lt;p&gt;So right after selecting the first challenge, it displayed a modal with the URL and a small description of what needed to be achieved:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74.0506329113924%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYUlEQVQ4y41TW27UQBD0/ZDCCZDgiwsgfpH45hIghJKABBI/PE7AK4D4iNhsnJDEzq7HnvHb42dRPbtBCSSApVL3PLrdVd3jWduiqmqUTYOqbVHUDUpr0Y0DsrJEnpcYhhHjOP6yl0LOhgFeyaAgWOB0/wdOZz6C2QGOv/uwKsXyKISKNaZpwn994wQvzWpkqUb/+i3GJ88wbr/E9PwN+s1XwKddd29iBZL0PFw8E4y/7XsmtWhJtSHVuqrQ0R/6juhJUTD8QU/2W1sxZc8kXJ8784qiRBguEYQLRCr5K6Ozymw7YHeWIFzyx+PFO540xKQZsrxw1jWorFCxYgk/j3EtZRSPuPfA4s79Bifh6E6lYY6ybSwaVtlKIpPTZ7I0R50V4C2yIrp+hbZztqcci0WMxdIgTgwSbZAypuW513FEmqpnYyoYOYx5aDKoKEG0jKHdnkasZK2oc71KSD9SsbOnC4WYd1zCmtTStIBmEqGsdUqbU4LSrcV3+/ITBklXRXzRuyCbab3u+1XzvFT0y9bIc2dlL6cv1pgUMqtnqDgJAiuTwcdg7WpKuq5zvncShJjvHxA+/IND+P4hZnv72Jv7tHPMZnNEkUKSJKQVE4osjKMrbALGy5dRc601vDhO1lWlV8IYcwF5nrGxDWe1pKbazaOsyyJfaSgQCvKuz8q/DCJ6z6Ev2cSPXzu8/9xh51uPdzstPnzpUDd8y3JJEoqoXd87+6/vKJiwccti42aD23dbXKd/7UYDNhueYrdEE2l7kmhnr4J02RiNo2ODx08VHm4qbL1QeLRFbCucBAY/AftIeJ87l6OEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;irish name&quot;
+        title=&quot;irish name&quot;
+        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png&quot;
+        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name.png 158w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name.png 315w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png 630w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name.png 945w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name.png 1260w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png 1450w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: Bypass a login page &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Clicking on the link tool me to a page listing some people (presumably Irish). I could see their pics, along with their names and a short description. On the left, there was a menu (you have to click on the hamburger icon) that as soon as it was displayed, presented me with three options:  &lt;strong&gt;Close Menu&lt;/strong&gt;, &lt;strong&gt;Support&lt;/strong&gt; and &lt;strong&gt;Admin Login&lt;/strong&gt;. There was also a pagination at the very bottom but that didn’t really work. Pressing CTRL+U and quickly checking the source code gave me nothing other than a pretty standard page html page.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/215534e1d005e8686ca4297bfb9edb86/7ad71/irish2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 61.39240506329114%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAADPElEQVQoz22T/1PTdRzHP39DUT/VH1D6Uwkh2TeBS9CwHSyBgACxCCUGGuiQjUmgFMqaDnTIlwD56qSdAqsBegwYDgk9x5EgcfK1Gt9sA7YxePRhP1XX8+51z3s+X3fP173f93oJDoeDHWxtbflqe3ub/8LpdLK0tMTK8vL/9v8JYSfE6/X+y3S5Xbg9bp/vcm2wtr4uao9Pe72bbG56cbs9eDw77BV5UyyPj4VVceqzyafYHo9xpew6Dc16bhrb6LcOEBS4B8nBUM5kHENTkE1LfRld99ppaNKTkVXEmdNFKBWFyBUlZJ8t5bRCjfB8eRHjbT3xSV+wJyiYqOhoOjqNbDjdSCIPEbFvL9roKEyqTAY7aujp7UB7tYrDkhRyvkzl1jU1hSdlJB49RUxyDsKKfZ6qy0UkS8KJDXmbRDGkubkOz9YirS21HAnay4UD4dwvzMVu62X40SBa3Q9IIo5QrZTxh8lAR3EeqUdPEJWYjTA5NoLhhpbrOccojg2hJu8E7aK+Z23jXHEBae+8R5k0mpEiBfbhu/Q9HOJ8iRbpocPoshKZ1N+gq7SQppJCMmVKhCc2Kzp1PhfTEyhPj+MnjZInD810m7v5JD6SA/4BfBXyPubvlSz82k/PfTPlVytJCAulQp6Ktew78uM/JjMpie66agSr2cg1jYrLeTLOx4bRqExjfHyMmdkFaktVZKRI0eTKmBvqYuZBFzbLHWxGPXfFbzqbJCUt8iNi/HehOZ6MUXy60NZaS/rxBMJC95MV8S6Z0g+Ji4+jf8BCe1U9fbeq0VeqGW6qo+/SBSYe9zLdd4eF9kZyP4sh//NPKZd/zbihjqn+HoR8lQK/l1/kBT8/UsL380HAG7z0yqvITp6is74Vc0sLP9dfwlRXgUlXwdToCDVX1Ey1VtKgkvPma7vR5MmZfjDA3O+LCOe+KeD13bvwD3yLgAB/kQPZFxxMrlKF6aaBiV9G6LvdgPlHHWODFv58NkXJt2oMmouMd7YRG36QocZK5qZnWV11iGuzssLc/Dyjo6NYLBZsIs/MzmK323E+/4v1tTV+ezqB7dEwq8tLuDc2cLtceMULczodorfIToYP4ln+DcYNyiPV1HdIAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;irish2&quot;
+        title=&quot;irish2&quot;
+        src=&quot;/static/215534e1d005e8686ca4297bfb9edb86/f058b/irish2.png&quot;
+        srcset=&quot;/static/215534e1d005e8686ca4297bfb9edb86/c26ae/irish2.png 158w,
+/static/215534e1d005e8686ca4297bfb9edb86/6bdcf/irish2.png 315w,
+/static/215534e1d005e8686ca4297bfb9edb86/f058b/irish2.png 630w,
+/static/215534e1d005e8686ca4297bfb9edb86/40601/irish2.png 945w,
+/static/215534e1d005e8686ca4297bfb9edb86/78612/irish2.png 1260w,
+/static/215534e1d005e8686ca4297bfb9edb86/7ad71/irish2.png 2338w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt; The first link on the menu did exactly what it said it would: It closed the menu. The second item got me to a forum sort of page where there was a discussion about irish people. First comment was a giveaway:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Hi. I tried adding my favorite Irish person, Conan O’Brien. But I keep getting something called a &lt;strong&gt;SQL Error&lt;/strong&gt;.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After that, the obvious place to go was the admin login. The login was pretty standard and the first thing I did was to add a single quote &lt;code class=&quot;language-text&quot;&gt;&amp;#39;&lt;/code&gt; to both &lt;strong&gt;Username&lt;/strong&gt; and &lt;strong&gt;Password&lt;/strong&gt; fields, expecting the application to throw me a SQL error. Instead, I got a &lt;strong&gt;“Login failed”&lt;/strong&gt; response. Small tweak, this time adding &lt;code class=&quot;language-text&quot;&gt;bob&amp;#39;&lt;/code&gt; in the username field and which threw me a &lt;strong&gt;500 Internal Server Error&lt;/strong&gt;. That was the indication this actually broke the SQL query.&lt;/p&gt;
+&lt;p&gt;After that, I went for the obvious &lt;code class=&quot;language-text&quot;&gt;bob&amp;#39; or 1=1--&lt;/code&gt; on the &lt;strong&gt;Username&lt;/strong&gt;. This got me logged in and along with that, the first flag.&lt;/p&gt;
+&lt;h4&gt;Explanation&lt;/h4&gt;
+&lt;p&gt;This might be the most basic &lt;em&gt;SQL injection&lt;/em&gt; technique - and most well known - to bypass login pages. It has been around for quite some time and consists in two things: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The fact that the input &lt;strong&gt;isn’t sanitized&lt;/strong&gt; and injects whatever you passed in directly into the query;&lt;/li&gt;
+&lt;li&gt;The fact that by manipulating the query, it allows you to disregard the first piece of the condition by creating a second one that &lt;strong&gt;always evaluate to true&lt;/strong&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The standard query to retrieve and validate wether an user actually exists could be something like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;SELECT FROM users WHERE username=&amp;#39;bob&amp;#39; AND password=&amp;#39;p4ssw0rd&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Getting a response from this query means the user sent by whoever is trying to log in actually exists. So now, take a moment to double-check what we just did when the &lt;code class=&quot;language-text&quot;&gt;bob&amp;#39; or 1=1--&lt;/code&gt; was introduced as a username. I will rewrite the &lt;em&gt;SQL&lt;/em&gt; so you can see for yourself:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;SELECT FROM users WHERE username=&amp;#39;bob&amp;#39; or 1=1--&amp;#39; AND password=&amp;#39;p4ssw0rd&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And now to sum it up:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We first introduce a &lt;code class=&quot;language-text&quot;&gt;&amp;#39;&lt;/code&gt;, which in the context of this query, sets the boundary of that string - &lt;strong&gt;bob&lt;/strong&gt; - informed&lt;/li&gt;
+&lt;li&gt;Then, we add our condition &lt;code class=&quot;language-text&quot;&gt;1=1&lt;/code&gt; that happens to always evaluate to &lt;strong&gt;true&lt;/strong&gt;. This for instance, could also be replace by &lt;code class=&quot;language-text&quot;&gt;2 &amp;gt; 1&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;&amp;#39;a&amp;#39;=&amp;#39;a&amp;#39;&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Last but not least: we add a &lt;code class=&quot;language-text&quot;&gt;--&lt;/code&gt; which stands for &lt;strong&gt;comment&lt;/strong&gt; in &lt;em&gt;SQL&lt;/em&gt;, and this tells the interpreter to &lt;strong&gt;ignore&lt;/strong&gt; the remaining pieces of this query &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The outcome is a query that evaluates to true allowing me to login without an actual valid password. Hopefully that made sense.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Irish-Name Repo 2&lt;/h3&gt;
+&lt;p&gt;The second challenge landed me back to the same page. This time however, the description hinted the SQL had been improved or in other words, my first bypass was now discarded. Lets have a look.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74.0506329113924%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYUlEQVQ4y41TW27UQBD0/ZDCCZDgiwsgfpH45hIghJKABBI/PE7AK4D4iNhsnJDEzq7HnvHb42dRPbtBCSSApVL3PLrdVd3jWduiqmqUTYOqbVHUDUpr0Y0DsrJEnpcYhhHjOP6yl0LOhgFeyaAgWOB0/wdOZz6C2QGOv/uwKsXyKISKNaZpwn994wQvzWpkqUb/+i3GJ88wbr/E9PwN+s1XwKddd29iBZL0PFw8E4y/7XsmtWhJtSHVuqrQ0R/6juhJUTD8QU/2W1sxZc8kXJ8784qiRBguEYQLRCr5K6Ozymw7YHeWIFzyx+PFO540xKQZsrxw1jWorFCxYgk/j3EtZRSPuPfA4s79Bifh6E6lYY6ybSwaVtlKIpPTZ7I0R50V4C2yIrp+hbZztqcci0WMxdIgTgwSbZAypuW513FEmqpnYyoYOYx5aDKoKEG0jKHdnkasZK2oc71KSD9SsbOnC4WYd1zCmtTStIBmEqGsdUqbU4LSrcV3+/ITBklXRXzRuyCbab3u+1XzvFT0y9bIc2dlL6cv1pgUMqtnqDgJAiuTwcdg7WpKuq5zvncShJjvHxA+/IND+P4hZnv72Jv7tHPMZnNEkUKSJKQVE4osjKMrbALGy5dRc601vDhO1lWlV8IYcwF5nrGxDWe1pKbazaOsyyJfaSgQCvKuz8q/DCJ6z6Ev2cSPXzu8/9xh51uPdzstPnzpUDd8y3JJEoqoXd87+6/vKJiwccti42aD23dbXKd/7UYDNhueYrdEE2l7kmhnr4J02RiNo2ODx08VHm4qbL1QeLRFbCucBAY/AftIeJ87l6OEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;irish name&quot;
+        title=&quot;irish name&quot;
+        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png&quot;
+        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name.png 158w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name.png 315w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png 630w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name.png 945w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name.png 1260w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png 1450w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: Bypass the enhanced login page &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I went back to the admin page and tried the same payload I used before &lt;code class=&quot;language-text&quot;&gt;admin&amp;#39; or 1=1--&lt;/code&gt;. What happened this time however, is our SQLi attempt gets detected
+right away as shown down below:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8ebb470a1d6a09600dc127a16fde0627/38116/sql-detected.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.86075949367089%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAXUlEQVQoz+3MQQqAIBSE4XdoySxIRULrmnoMdUIXEa0qWzrwbWbxE2McAxcQYq6s3WDdDmNWSKWhtMEiNfg4PULeexQhhKp1dD9SSqcY42t0DRQ55yaEn9eDPfhhB+XTm4fzR/TvAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sql detected&quot;
+        title=&quot;sql detected&quot;
+        src=&quot;/static/8ebb470a1d6a09600dc127a16fde0627/f058b/sql-detected.png&quot;
+        srcset=&quot;/static/8ebb470a1d6a09600dc127a16fde0627/c26ae/sql-detected.png 158w,
+/static/8ebb470a1d6a09600dc127a16fde0627/6bdcf/sql-detected.png 315w,
+/static/8ebb470a1d6a09600dc127a16fde0627/f058b/sql-detected.png 630w,
+/static/8ebb470a1d6a09600dc127a16fde0627/40601/sql-detected.png 945w,
+/static/8ebb470a1d6a09600dc127a16fde0627/78612/sql-detected.png 1260w,
+/static/8ebb470a1d6a09600dc127a16fde0627/38116/sql-detected.png 2086w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;After playing with the input for a second, I noticed what was giving away our SQLi was in fact the &lt;code class=&quot;language-text&quot;&gt;or&lt;/code&gt; piece as part the username. So everything with
+&lt;strong&gt;or&lt;/strong&gt; in the condition would trigger the &lt;em&gt;WAF&lt;/em&gt;. I then, removed the &lt;code class=&quot;language-text&quot;&gt;or 1=1--&lt;/code&gt; altogether and replaced it with just &lt;code class=&quot;language-text&quot;&gt;admin&amp;#39;--&lt;/code&gt;. Boom, got the second flag.&lt;/p&gt;
+&lt;h4&gt;Explanation&lt;/h4&gt;
+&lt;p&gt;So in this case the validator was only looking for &lt;code class=&quot;language-text&quot;&gt;or&lt;/code&gt; as part of the query, and I needed to find away to accomplish the same result without it. What I did then was take into account the fact that I knew beforehand the &lt;code class=&quot;language-text&quot;&gt;admin&lt;/code&gt; was a valid user - he was posting in the forum page - and that’s all. This is how the query looks like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;SELECT FROM users WHERE username=&amp;#39;admin&amp;#39;-- AND password=&amp;#39;p4ssw0rd&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This again, returned a response which is enough for me to get new the flag.&lt;/p&gt;
+&lt;h3&gt;Irish-Name Repo 3&lt;/h3&gt;
+&lt;p&gt;Until now, this had been a walk in a park. Even if you are not familiar with &lt;em&gt;SQLi&lt;/em&gt; techniques, just by looking at payloads out there you would eventually be able to log in. The last piece of this challenge requires a little investigation nonetheless. &lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74.0506329113924%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAACYUlEQVQ4y41TW27UQBD0/ZDCCZDgiwsgfpH45hIghJKABBI/PE7AK4D4iNhsnJDEzq7HnvHb42dRPbtBCSSApVL3PLrdVd3jWduiqmqUTYOqbVHUDUpr0Y0DsrJEnpcYhhHjOP6yl0LOhgFeyaAgWOB0/wdOZz6C2QGOv/uwKsXyKISKNaZpwn994wQvzWpkqUb/+i3GJ88wbr/E9PwN+s1XwKddd29iBZL0PFw8E4y/7XsmtWhJtSHVuqrQ0R/6juhJUTD8QU/2W1sxZc8kXJ8784qiRBguEYQLRCr5K6Ozymw7YHeWIFzyx+PFO540xKQZsrxw1jWorFCxYgk/j3EtZRSPuPfA4s79Bifh6E6lYY6ybSwaVtlKIpPTZ7I0R50V4C2yIrp+hbZztqcci0WMxdIgTgwSbZAypuW513FEmqpnYyoYOYx5aDKoKEG0jKHdnkasZK2oc71KSD9SsbOnC4WYd1zCmtTStIBmEqGsdUqbU4LSrcV3+/ITBklXRXzRuyCbab3u+1XzvFT0y9bIc2dlL6cv1pgUMqtnqDgJAiuTwcdg7WpKuq5zvncShJjvHxA+/IND+P4hZnv72Jv7tHPMZnNEkUKSJKQVE4osjKMrbALGy5dRc601vDhO1lWlV8IYcwF5nrGxDWe1pKbazaOsyyJfaSgQCvKuz8q/DCJ6z6Ev2cSPXzu8/9xh51uPdzstPnzpUDd8y3JJEoqoXd87+6/vKJiwccti42aD23dbXKd/7UYDNhueYrdEE2l7kmhnr4J02RiNo2ODx08VHm4qbL1QeLRFbCucBAY/AftIeJ87l6OEAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;irish name&quot;
+        title=&quot;irish name&quot;
+        src=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png&quot;
+        srcset=&quot;/static/c8f44ac6f95c3dcdf4780873c6d5661f/c26ae/irish-name.png 158w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/6bdcf/irish-name.png 315w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/f058b/irish-name.png 630w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/40601/irish-name.png 945w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/78612/irish-name.png 1260w,
+/static/c8f44ac6f95c3dcdf4780873c6d5661f/c4451/irish-name.png 1450w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Goal&lt;/strong&gt;: Bypass the latest login page which now only displays the &lt;strong&gt;password&lt;/strong&gt; input field. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bebbd4feb7602165b69ad1035bd4a71b/2d912/only-password.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.49367088607595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAABEklEQVQoz82QTU/CQBCG+z8VBQ3R8mFdWk38L5AYEv+EJ88lHDgq1dgLSjQiggl0P15ntlmCcqmGg2/ybGYnM+/srNdonkKICEHzBC0hcBaGOI9CRC0BEQSo+z4a9ZrlqFrFQbmMw0plg1JpHzu7e/BAWmQK6esnHl/mGD594HY0xR1D8XCN5HmGZDzf4J5YKsNWuWFKRlG3h4urPkS3j+N2jFqnB78Tf6f9A8rltTEexjNnaLCUCtP3N2KCjGKlFGRBuDaT0vaxl32hVBqDdGJXZhmtYYwpBB3QVM8eq5X5cnmT4HowssmF5Km6GNTLG2bOMB+SfyhLa5pofo/z8FywnvyruN9zwTZY/eE29f8NvwDNt31cWia6YgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;only password&quot;
+        title=&quot;only password&quot;
+        src=&quot;/static/bebbd4feb7602165b69ad1035bd4a71b/f058b/only-password.png&quot;
+        srcset=&quot;/static/bebbd4feb7602165b69ad1035bd4a71b/c26ae/only-password.png 158w,
+/static/bebbd4feb7602165b69ad1035bd4a71b/6bdcf/only-password.png 315w,
+/static/bebbd4feb7602165b69ad1035bd4a71b/f058b/only-password.png 630w,
+/static/bebbd4feb7602165b69ad1035bd4a71b/40601/only-password.png 945w,
+/static/bebbd4feb7602165b69ad1035bd4a71b/78612/only-password.png 1260w,
+/static/bebbd4feb7602165b69ad1035bd4a71b/2d912/only-password.png 1772w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I once again, found myself staring at the admin page just to find out this time, there was only a password field being displayed. Since I didn’t know any passwords and there was no way to know them just like I did with usernames, I stopped to understand my options for a second. Just out of curiosity, I decided to throw &lt;code class=&quot;language-text&quot;&gt;admin&amp;#39;--&lt;/code&gt; just to get that out of the day and that obviously didn’t work. I then, pressed &lt;code class=&quot;language-text&quot;&gt;CTRL+U&lt;/code&gt; to see the page’s source code. Carefully checking the form to submit the request, I noticed a hidden field called &lt;strong&gt;debug&lt;/strong&gt;. Now with the developer tools, I changed its value from &lt;strong&gt;0&lt;/strong&gt; to &lt;strong&gt;1&lt;/strong&gt;, password to &lt;strong&gt;abc&lt;/strong&gt; and again, submitted the request.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/bbe542a7cfcd190161dc9ca13f344064/d9ed5/chrome-dev-tools.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 32.911392405063296%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAABbElEQVQoz4WRXUvbUACG80dESdI0H01ibZLaplXwC6m96B+bUImusjLGxqYX+wu79wu888IbQQSt4HDr4loweTyJk13o3AsP78WB57ycI/Xff6TX/8A70duio16fTUE36rHe3WR9Y4s3orvRW6Joi3rYZGJSxrZdwrkF5mshjXCORq1BveIjHZ3HfD0a8OVgwOf9q7wfuWbn8Jpdwae9K76dDsmyttZCMR1mg4D6tIlVstF1A1NTKWga0vnlDReDG+5GY37Gvxm+wI9hzO3wjl9xzNLiIlNKgfJsE9+xcOwSumGgKgqqqiIdn33n5OI2v/0+SUnT5yRJwn0Ko9GIVquFLMu4QhhWxcrAw53x8qWmaSDxJ4mQJek/EMIsmbDdbiMrKhXxZlXfw5sp47oujiMomUhPK17L03kmXF5ZxbBsvGqNciVgWnyEH9TESh9V0/8K/0eW8XhMp9OhUNDQizrFYjHHMMx8oWWVeACEEI6w5zyIoAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;chrome dev tools&quot;
+        title=&quot;chrome dev tools&quot;
+        src=&quot;/static/bbe542a7cfcd190161dc9ca13f344064/f058b/chrome-dev-tools.png&quot;
+        srcset=&quot;/static/bbe542a7cfcd190161dc9ca13f344064/c26ae/chrome-dev-tools.png 158w,
+/static/bbe542a7cfcd190161dc9ca13f344064/6bdcf/chrome-dev-tools.png 315w,
+/static/bbe542a7cfcd190161dc9ca13f344064/f058b/chrome-dev-tools.png 630w,
+/static/bbe542a7cfcd190161dc9ca13f344064/40601/chrome-dev-tools.png 945w,
+/static/bbe542a7cfcd190161dc9ca13f344064/78612/chrome-dev-tools.png 1260w,
+/static/bbe542a7cfcd190161dc9ca13f344064/d9ed5/chrome-dev-tools.png 2880w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The result can be seen here:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b1720a93e132de57aa04aa9e438d3c92/701e9/response-debug.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.92405063291139%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAqElEQVQ4y+2OzQrCMBCE84iKKGgwtemP+Ko99AHyBKU0LSSlpdBkpIsHDyUUPerCx4QhM7tMRBLRLYEQMUQUI83uyPMHZJJBygwXfgXngvR4OmO3PwRhVVWhrms0TYNhGKC1Rtd1RNu2sNaS75zDPDvSEEwphaIoUJYl6TRNr/BMLG/vPbYOG8cRxhi6ou/71fDibYWtbVn7+O4HLwyFPxn2bcG/8BcLnzSA3+ls8h+gAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;response debug&quot;
+        title=&quot;response debug&quot;
+        src=&quot;/static/b1720a93e132de57aa04aa9e438d3c92/f058b/response-debug.png&quot;
+        srcset=&quot;/static/b1720a93e132de57aa04aa9e438d3c92/c26ae/response-debug.png 158w,
+/static/b1720a93e132de57aa04aa9e438d3c92/6bdcf/response-debug.png 315w,
+/static/b1720a93e132de57aa04aa9e438d3c92/f058b/response-debug.png 630w,
+/static/b1720a93e132de57aa04aa9e438d3c92/40601/response-debug.png 945w,
+/static/b1720a93e132de57aa04aa9e438d3c92/78612/response-debug.png 1260w,
+/static/b1720a93e132de57aa04aa9e438d3c92/701e9/response-debug.png 1780w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;After that, I’ve tried a few other passwords without any lucky until I finally figured out what was happening. I then, sent the payload &lt;code class=&quot;language-text&quot;&gt;&amp;#39; be 1=1--&lt;/code&gt; and got the last missing flag. Over and out.&lt;/p&gt;
+&lt;h4&gt;Explanation&lt;/h4&gt;
+&lt;p&gt;Here’s what happened: The result from &lt;strong&gt;abc&lt;/strong&gt; was &lt;strong&gt;nop&lt;/strong&gt; as you could see. And &lt;strong&gt;a&lt;/strong&gt; is one letter of distance from &lt;strong&gt;b&lt;/strong&gt; while &lt;strong&gt;c&lt;/strong&gt; are two letters from &lt;strong&gt;a&lt;/strong&gt; right? The same applies to our password response &lt;strong&gt;nop&lt;/strong&gt;. From that point on, it was pretty easy to tell… On the backend, somewhere somehow to each letter of our password, the position is shifted by &lt;strong&gt;12&lt;/strong&gt; chars to the right from its original position. &lt;/p&gt;
+&lt;p&gt;So lets say we send &lt;strong&gt;car&lt;/strong&gt; as our password. The result is going to be:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First letter is &lt;strong&gt;c&lt;/strong&gt;: shift 12 positions away and you’ll get the letter &lt;strong&gt;p&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Second letter is &lt;strong&gt;a&lt;/strong&gt;: shift 12 positions away and you’ll get the letter &lt;strong&gt;n&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Last letter is &lt;strong&gt;r&lt;/strong&gt;: shift 12 positions away and you’ll get the letter &lt;strong&gt;f&lt;/strong&gt; (its circular, so once it reaches the letter &lt;strong&gt;z&lt;/strong&gt; it starts over)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dope, but again.. what do we do with that information now? Well, how about crafting a payload that after converted, translates its final result into  &lt;code class=&quot;language-text&quot;&gt;or 1=1--&lt;/code&gt;? That could work. So applying the same idea to the new password, that would be &lt;code class=&quot;language-text&quot;&gt;be 1=1&lt;/code&gt;. This is how we get the last flag.&lt;/p&gt;
+&lt;h3&gt;Wrapping up&lt;/h3&gt;</content:encoded></item><item><title><![CDATA[TryHackMe - Tartarus CTF Writeup]]></title><description><![CDATA[This is my first TryHackMe writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado…]]></description><link>https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.app/try-hack-me-tartarus/</guid><pubDate>Sun, 01 Nov 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first &lt;a href=&quot;https://tryhackme.com/&quot;&gt;TryHackMe&lt;/a&gt; writeup. Tartarus was flagged as na easy machine and took me around 2 hours to get the root. Without further ado, lets get to it.   &lt;/p&gt;
 &lt;h2&gt;Enumeration&lt;/h2&gt;
 &lt;p&gt;I like to start it off by quickly checking whats in front of me. &lt;a href=&quot;https://nmap.org/&quot;&gt;Nmap&lt;/a&gt; can help with that. My &lt;em&gt;go-to&lt;/em&gt; approach is usually:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;P.S: Quick heads up: There will be command breakdown in the end of every article so you can use for future reference. For now, just bear with me.&lt;/em&gt;  &lt;/p&gt;
@@ -213,7 +534,7 @@ for passwd in passwords:
 system($_GET[&amp;#39;cmd&amp;#39;])
 ?&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I could’ve gone for the &lt;a href=&quot;https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php&quot;&gt;pentest monkey php reverse shell&lt;/a&gt; but I usually try to make things as simple as I can. And honestly, this gives me everything I need: &lt;code class=&quot;language-text&quot;&gt;system&lt;/code&gt; function executes whenever command I would passed in, while the &lt;code class=&quot;language-text&quot;&gt;$_GET[&amp;#39;cmd&amp;#39;]&lt;/code&gt; is a request param I’ve sent (which I named &lt;strong&gt;cmd&lt;/strong&gt;). &lt;/p&gt;
-&lt;p&gt;Then I open up &lt;strong&gt;Burpsuite&lt;/strong&gt;, went to directory where my php script landed. &lt;/p&gt;
+&lt;p&gt;Then I open up &lt;strong&gt;Burpsuite&lt;/strong&gt;, went &lt;strong&gt;to&lt;/strong&gt; directory where my php script landed. &lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
